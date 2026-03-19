@@ -1,68 +1,114 @@
-# 🧭 Lost No More
+# Lost No More
 
-A community-powered lost and found platform built with **Next.js**, **Express.js**, **MongoDB**, and **Node.js**.  
-Designed for users to report lost or found items and reconnect with their belongings.
+A full-stack lost and found platform built for campus use. Students can report lost or found items, get notified via email when a match is posted, and coordinate returns — without relying on WhatsApp groups or admin desks.
 
-**Live Website:** [Lost No More](https://lost-and-found-murex-five.vercel.app/)
-<br />
-Backend is Hosted on AWS EC2 
----
-
-## 🚀 Features
-
-- 🧑‍💻 **User Authentication**
-  - Sign up and log in using `@chitkarauniversity.edu.in` emails only
-  - JWT-based session management
-
-- 📋 **Report Lost or Found Items**
-  - Upload item details with optional image
-  - Automatically saves location and contact number
-  - Report type: `Lost`, `Found`, or `Returned`
-
-- 🔎 **Dashboard**
-  - View all lost and found reports
-  - Filter by type and see reporter details
-
-- 🛎️ **Notifications**
-  - Users are alerted when a new item is reported through Email
-
-- 🖼️ **Image Upload**
-  - Uses **Multer** and **Cloudinary** for seamless image uploads
+**Live:** [lost-and-found-murex-five.vercel.app](https://lost-and-found-murex-five.vercel.app)  
+**Backend:** Hosted on AWS EC2
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### Landing Page
-![Landing Page](/screenshots/Landing.png)
+![Landing Page](./screenshots/Landing.png)
 
-### Login Page
-![Login Page](/screenshots/Login.png)
-
-### Signup Page
-![Signup Page](/screenshots/Signup.png)
-
-### Dashboard Page
-![Dashboard View](/screenshots/Dashboard.png)
+### Dashboard
+![Dashboard](./screenshots/Dashboard.png)
 
 ### Report Item Form
-![Report Item Form](/screenshots/reportform.png)
+![Report Form](./screenshots/reportform.png)
+
+### Login
+![Login](./screenshots/Login.png)
 
 ---
 
-## 🧱 Tech Stack
+## What it does
 
-| Layer         | Tech                                |
-|--------------|--------------------------------------|
-| Frontend     | Next.js (App Router) + TailwindCSS   |
-| Backend      | Express.js + Node.js                 |
-| Database     | MongoDB + Mongoose                   |
-| Image Upload | Multer + Cloudinary                  |
-| Auth         | JWT + Cookie Tokens                  |
-| Security     | Rate Limiter                         |
-| DevOps       | Docker                               |
+- **Authentication** — Restricted to `@chitkarauniversity.edu.in` emails with JWT-based session management
+- **Report Items** — Post lost or found items with images, location, and contact details
+- **Item Status** — Mark reports as `Lost`, `Found`, or `Returned`
+- **Email Notifications** — Users get notified when a new item is reported
+- **Dashboard** — View and filter all reports by type
 
 ---
 
-Made by Deepanshu and Team  
-For Chitkara University  
+## Tech Stack
+
+| Layer | Tech |
+|-------|------|
+| Frontend | Next.js (App Router) + TailwindCSS |
+| Backend | Node.js, Express.js |
+| Database | MongoDB + Mongoose |
+| Image Upload | Multer + Cloudinary |
+| Auth | JWT + Cookie Tokens |
+| Security | Rate Limiting |
+| DevOps | Docker, GitHub Actions (CI/CD), AWS EC2 |
+
+---
+
+## Deployment
+
+Originally hosted on Render — migrated to a Dockerized AWS EC2 instance to eliminate cold starts.  
+This cut first-request response latency by ~10 seconds and improved overall uptime.  
+Uptime is monitored via UptimeRobot.
+
+Every push to `main` triggers a GitHub Actions workflow that SSHs into EC2 and redeploys automatically.
+
+---
+
+## Local Setup
+
+### Prerequisites
+- Node.js v18+
+- MongoDB (local or Atlas)
+- Cloudinary account
+
+### Steps
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Deepanshu902/lost-no-more.git
+   cd lost-no-more
+   ```
+
+2. Install dependencies
+   ```sh
+   # Backend
+   cd backend
+   npm install
+
+   # Frontend
+   cd ../frontend
+   npm install
+   ```
+
+3. Set up environment variables  
+   Create a `.env` file in the `backend` folder:
+   ```env
+   PORT=8000
+   MONGODB_URI=your_mongodb_uri
+   JWT_SECRET=your_jwt_secret
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
+   EMAIL_USER=your_email
+   EMAIL_PASS=your_email_password
+   ```
+
+4. Run locally
+   ```sh
+   # Backend
+   cd backend
+   npm run dev
+
+   # Frontend
+   cd frontend
+   npm run dev
+   ```
+
+---
+
+## License
+
+MIT License
