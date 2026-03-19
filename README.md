@@ -2,7 +2,7 @@
 
 A full-stack lost and found platform built for campus use. Students can report lost or found items, get notified via email when a match is posted, and coordinate returns — without relying on WhatsApp groups or admin desks.
 
-**Live:** [lost-and-found-murex-five.vercel.app](https://lost-and-found-murex-five.vercel.app)  
+**Live:** [Website Demo](https://lost-and-found-murex-five.vercel.app)  
 **Backend:** Hosted on AWS EC2
 
 ---
