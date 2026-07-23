@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { apiFetch } from "@/lib/api"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
@@ -53,9 +54,7 @@ export default function DashboardPage() {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}report/`, {
-        credentials: "include",
-      })
+      const response = await apiFetch("report/")
 
       if (!response.ok) {
         if (response.status === 401) {

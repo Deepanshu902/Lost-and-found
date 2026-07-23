@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { apiFetch } from "@/lib/api"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -49,7 +50,7 @@ export default function RegisterPage() {
   async function onSubmit(data: RegisterFormValues) {
     setIsLoading(true)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}users/register`, {
+      const response = await apiFetch("users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

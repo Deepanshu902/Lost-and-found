@@ -1,6 +1,6 @@
 import {Router} from "express"
 
-import { changePassword, CurrentUser, loginUser,logout,registerUser, updateAccountDetails } from "../controller/user.controller.js"
+import { changePassword, CurrentUser, loginUser,logout,registerUser, updateAccountDetails, refreshAccessToken } from "../controller/user.controller.js"
 
 import {verifyJWT} from "../middleware/auth.middleware.js"
 
@@ -14,6 +14,8 @@ router.use(upload.none());
 router.route("/login").post(loginUser)
 
 router.route("/register").post(registerUser)
+
+router.route("/refresh-token").post(refreshAccessToken)
 
 // secured Routes
 

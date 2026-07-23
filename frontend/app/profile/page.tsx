@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { apiFetch } from "@/lib/api"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -95,13 +96,12 @@ export default function ProfilePage() {
   async function onUpdateProfile(data: ProfileFormValues) {
     setIsUpdating(true)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}users/update-details`, {
+      const response = await apiFetch("users/update-details", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-        credentials: "include",
       })
 
       const result = await response.json()
@@ -135,7 +135,7 @@ export default function ProfilePage() {
   async function onChangePassword(data: PasswordFormValues) {
     setIsChangingPassword(true)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}users/change-password`, {
+      const response = await apiFetch("users/change-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -144,7 +144,6 @@ export default function ProfilePage() {
           oldPassword: data.currentPassword,
           newPassword: data.newPassword,
         }),
-        credentials: "include",
       })
 
       const result = await response.json()

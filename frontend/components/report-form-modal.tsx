@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import { apiFetch } from "@/lib/api"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -110,10 +111,9 @@ export function ReportFormModal({ isOpen, onClose, onReportAdded, user }: Report
   
     setIsSubmitting(true)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}report/`, {
+      const response = await apiFetch("report/", {
         method: "POST",
         body: formData,
-        credentials: "include",
       })
   
       const result = await response.json()

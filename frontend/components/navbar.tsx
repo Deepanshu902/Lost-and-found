@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { apiFetch } from "@/lib/api"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { LogOut, Menu, User } from "lucide-react"
@@ -35,9 +36,8 @@ export function Navbar({ user }: NavbarProps) {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}users/logout`, {
+      const response = await apiFetch("users/logout", {
         method: "POST",
-        credentials: "include",
       })
 
       if (!response.ok) {

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { apiFetch } from "@/lib/api"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -34,13 +35,12 @@ export default function LoginPage() {
   async function onSubmit(data: LoginFormValues) {
     setIsLoading(true)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}users/login`, {
+      const response = await apiFetch("users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-        credentials: "include",
       })
 
       const result = await response.json()
